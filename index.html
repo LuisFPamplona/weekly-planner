@@ -24,30 +24,47 @@
 
             <div class="add-task">
                 
-                <div class="add-task-text">
-                    <input type="text" placeholder="Digite aqui sua nova tarefa" id="new-task-text" class="new-task-add-input" id="new-task-text">
-                </div>
-
-                <div class="set-task-hour">
-                    <div class="add-task-hour">
-                        <button type="button" id="add-hour">
-                            <img src="./public/arrow-up.png" alt="">
-                        </button>
-                        <span id="hour">00</span>
-                        <button id="sub-hour">
-                            <img src="./public/arrow-down.png" alt="">
-                        </button>
+                <div class="task-text-hour">
+                    <div class="add-task-text">
+                        <input type="text" placeholder="Digite aqui sua nova tarefa" id="new-task-text" class="new-task-add-input" id="new-task-text">
                     </div>
                     
-                    <span>:</span>
-                    <div class="add-task-minutes">
-                        <button type="button" id="add-minutes">
-                            <img src="./public/arrow-up.png" alt="">
+                    <div class="set-task-hour">
+                        <div class="add-task-hour">
+                            <button type="button" id="add-hour">
+                                <img src="./public/arrow-up.png" alt="">
+                            </button>
+                            <span id="hour">00</span>
+                            <button id="sub-hour">
+                                <img src="./public/arrow-down.png" alt="">
+                            </button>
+                        </div>
+                    
+                        <span>:</span>
+                        <div class="add-task-minutes">
+                            <button type="button" id="add-minutes">
+                                <img src="./public/arrow-up.png" alt="">
+                            </button>
+                            <span id="minutes">00</span>
+                            <button id="sub-minutes">
+                                <img src="./public/arrow-down.png" alt="">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="add-all-days">
+                        <button type="button" id="add-all-days">
+                            <img src="./public/icons8-soma-50.png" alt="">
                         </button>
-                        <span id="minutes">00</span>
-                        <button id="sub-minutes">
-                            <img src="./public/arrow-down.png" alt="">
+                        <span>Todos os dias</span>
+                    </div>
+                </div>
+
+                <div class="remove-container">
+                    <div class="remove-all-days">
+                        <button type="button" id="remove-all-days">
+                            <img src="./public/icons8-x-50.png" alt="">
                         </button>
+                        <span>Excluir todas</span>
                     </div>
                 </div>
 
@@ -123,7 +140,10 @@
     
     <footer class="footer">
         <a target="_blank" href="https://icons8.com/icon/fUdrC5alNPvO/plus-math">Soma</a> ícone por <a target="_blank" href="https://icons8.com">Icons8</a>
+        <span>|</span>
         <a href="https://www.flaticon.com/br/icones-gratis/jogar" title="jogar ícones">Jogar ícones criados por Roundicons - Flaticon</a>
+        <span>|</span>
+        <a target="_blank" href="https://icons8.com/icon/GhvBtzNnBL71/close">X</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
     </footer>
     <script type="module" src="./src/main.js"></script>
 </body>

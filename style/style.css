@@ -35,9 +35,13 @@ a {
 
 .add-task{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+
     align-items: center;
+
     margin-top: 15px;
+    margin-left: 30%;
+    margin-right: 6%;
 }
 .add-task span {
     font-family: 'Edu NSW ACT Hand Precursive', cursive;
@@ -50,6 +54,11 @@ a {
     height: 60px;
     font-family: 'Edu NSW ACT Hand Precursive', cursive;
     font-size: 16pt;
+}
+
+.task-text-hour{
+    display: flex;
+    align-items: center;
 }
 /* HOUR AND MINUTES INPUT ------------------- */
 
@@ -91,6 +100,57 @@ background-color: transparent;
     transform: scale(0.8);
 }
 #sub-minutes img:active {
+    transform: scale(0.8);
+}
+
+.remove-container {
+    display: flex;  
+    align-items: center;
+}
+
+.add-all-days {
+
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 10px;
+    background-color: transparent;
+}
+.add-all-days span {
+    font-size: 8pt;
+    font-weight: bold;
+    color: #5aade4;
+    text-shadow: 1px 1px 1px black;
+    text-align: center;
+}
+.add-all-days button {
+    background-color: transparent;
+    border: none;
+}
+.add-all-days button:active{
+    transform: scale(0.8);
+}
+
+.remove-all-days {
+    
+    display: flex;
+    flex-direction: column;
+    
+    margin-left: 20px;
+    background-color: transparent;
+}
+.remove-all-days span {
+    font-size: 8pt;
+    font-weight: bold;
+    color: #dd6666;
+    text-shadow: 1px 1px 1px black;
+    text-align: center;
+}
+.remove-all-days button {
+    background-color: transparent;
+    border: none;
+}
+.remove-all-days button:active{
     transform: scale(0.8);
 }
 

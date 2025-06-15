@@ -71,3 +71,23 @@ export async function editTask(id, newTaskText){
         console.error('Error at editTask', err);
     }
 }
+
+export async function removeAllTasks(){
+    try{
+
+        const response = await fetch(URL)
+        const tasks = await response.json();
+        
+        for(const task of tasks){
+            await fetch(`${URL}/${task.id}`, {
+                method: 'DELETE'
+            })
+        }
+        
+        document.querySelectorAll('.task').forEach(task => task.remove());
+        
+
+    }catch(err){
+        console.error('Error at delete data', err);
+    }
+}

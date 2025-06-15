@@ -1,6 +1,7 @@
-import { addTask } from "./taskManager.js";
+import { addTask, addTaskAllDays } from "./taskManager.js";
 import { loadTasks } from "./storage.js"
 import { dragTasks } from "./ui.js";
+import { removeAllTasks } from "./storage.js";
 
 loadTasks()
 dragTasks()
@@ -8,6 +9,16 @@ dragTasks()
 let hour = 0;
 let minutes = 0;
 
+const addAllDays = document.querySelector('#add-all-days')
+addAllDays.addEventListener('click', (e)=>{  
+    e.preventDefault();
+    addTaskAllDays(hour, minutes)
+})
+
+const removeAllDays = document.querySelector('#remove-all-days')
+removeAllDays.addEventListener('click', (e)=>{
+    removeAllTasks()
+})
 
 const mondayAdd = document.querySelector('#monday-add')
 mondayAdd.addEventListener('click', (e)=>{
