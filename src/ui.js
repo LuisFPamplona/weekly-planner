@@ -1,10 +1,15 @@
 import { deleteTask, editTask } from "./storage.js";
+import { URL } from "./storage.js";
+
+
 
 
 export function createTask(text, hour, id){
     let taskDiv = document.createElement('div');
     taskDiv.className = 'task'
     taskDiv.id = 'task'+ id
+    taskDiv.draggable = 'true';
+    taskDiv.dataset.id = id;
 
     let taskContent = document.createElement('div');
     taskContent.className = 'content'
@@ -126,4 +131,75 @@ export function createTask(text, hour, id){
 
     return taskDiv;
 }
+
+export async function dragTasks(){
+    try{
+
+        const columns = document.querySelectorAll('.week-day');
+        
+        document.addEventListener('dragstart',(e)=>{
+            const draggingEl = e.target;
+            draggingEl.classList.add('dragging');
+
+            const taskId = draggingEl.dataset.id;
+
+        })
+
+        document.addEventListener('dragend', async (e)=>{
+            const dragging = e.target;
+            dragging.classList.remove('dragging');
+
+            const id = dragging.dataset.id;
+            const newWeekDay = dragging.parentElement.id;
+
+                await fetch(`${URL}/${id}`,{
+                method: 'PATCH',
+                headers: {
+                    'Content-Type' : 'application/json',
+                },
+                body: JSON.stringify({weekDay : newWeekDay}),
+            })
+
+
+        })
+        
+        columns.forEach((column)=>{
+            column.addEventListener('dragover', async (e)=>{
+                e.preventDefault();
+                
+                const dragging = document.querySelector('.dragging')
+                const applyAfter = getNewPosisiton(column, e.clientY)
+
+                if (!applyAfter) {
+                    column.appendChild(dragging);
+                } else {
+                    column.insertBefore(dragging, applyAfter);
+                } 
+            })
+        })
+        
+    }catch(err){
+        console.error('Error at drag', err)
+    }
+    
+}
+
+function getNewPosisiton(column, posY){
+    const cards = column.querySelectorAll('.task:not(.dragging)')
+    let result;
+
+    for(let referCard of cards){
+        const box = referCard.getBoundingClientRect();
+        const boxCenterY = box.y + box.height / 2;
+
+        if(posY >= boxCenterY){
+            result = referCard;
+            break;
+        } 
+    }
+    
+    return result;
+
+}
+
 

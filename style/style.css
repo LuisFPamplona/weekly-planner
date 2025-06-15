@@ -112,6 +112,7 @@ background-color: transparent;
 
     padding-left: 10px;
     padding-right: 10px;
+    
 }
 .week-day-container button {
     background-color: transparent;
@@ -127,7 +128,8 @@ background-color: transparent;
 .week-day {
 
     width: 220px;
-    /* height: 700px; */
+    min-height: 600px;
+    /* background-color: red; */
 
     margin-left: 5px;
     margin-right: 5px;
@@ -203,6 +205,10 @@ background-color: transparent;
 }
 .delete{
     background-color: #d4776c;
+}
+
+.dragging {
+    opacity: 0.5;
 }
 
 /* FOOTER ---------------- */

@@ -1,8 +1,9 @@
 import { addTask } from "./taskManager.js";
 import { loadTasks } from "./storage.js"
+import { dragTasks } from "./ui.js";
 
 loadTasks()
-
+dragTasks()
 
 let hour = 0;
 let minutes = 0;

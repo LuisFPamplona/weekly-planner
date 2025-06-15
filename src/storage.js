@@ -1,7 +1,7 @@
 import { createTask } from "./ui.js";
 
 
-const URL = 'http://localhost:3001/tasks'
+export const URL = 'http://localhost:3001/tasks'
 
 export async function sendTask(task){
     try{
@@ -31,7 +31,6 @@ export async function loadTasks(){
         
         tasks.forEach(task => {
             let newTask  = createTask(task.text, task.hour, task.id);
-            console.log(newTask)
             let divPai = document.querySelector(`#${task.weekDay}`);
             
             divPai.appendChild(newTask)
