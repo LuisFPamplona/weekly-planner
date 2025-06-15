@@ -159,6 +159,14 @@ background-color: transparent;
     margin-bottom: 5px;
     margin-top: 5px;
 }
+
+.editInput {
+    font-size: 8pt;
+    font-family: 'Edu NSW ACT Hand Precursive', cursive;
+    margin-left: 2px;
+    width: 70%;
+}
+
 .hour{
     font: bold 6pt Arial;
     border: solid 1px;

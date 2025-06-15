@@ -55,3 +55,20 @@ export async function deleteTask(id) {
     }
     
 }
+
+export async function editTask(id, newTaskText){
+    try{
+        const response = await fetch(`${URL}/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-type' : 'application/json',
+            },
+            body: JSON.stringify({text: newTaskText})
+        })
+        
+
+
+    }catch(err){
+        console.error('Error at editTask', err);
+    }
+}

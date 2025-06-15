@@ -1,4 +1,4 @@
-import { deleteTask } from "./storage.js";
+import { deleteTask, editTask } from "./storage.js";
 
 
 export function createTask(text, hour, id){
@@ -38,6 +38,78 @@ export function createTask(text, hour, id){
     let editButton = document.createElement('button');
     editButton.className = 'edit'
     editButton.id = 'edit'+ id
+
+    editButton.addEventListener('click', (e)=>{
+        const thisText = document.querySelector(`#task-text${id}`)
+        const thisHour = document.querySelector(`#hour${id}`)
+
+        thisText.remove();
+        thisHour.remove();
+        deleteButton.remove()
+        editButton.remove()
+        doneButton.remove()
+
+        let textInput = document.createElement('input')
+        textInput.className = 'editInput';
+        textInput.value = text;    
+
+        let uselessInvisibleButton = document.createElement('button');
+        uselessInvisibleButton.style.background = 'transparent'
+        uselessInvisibleButton.style.border = 'none'
+        
+        let newTaskText;
+
+        let confirmEditButton = document.createElement('button');
+        confirmEditButton.className = 'done'
+        confirmEditButton.addEventListener('click', async(e)=>{
+            
+            newTaskText = textInput.value;
+
+            taskText.innerHTML = newTaskText
+            textInput.remove()
+            taskHour.remove()
+            uselessInvisibleButton.remove()
+            confirmEditButton.remove()
+            cancelEditButton.remove()
+
+            taskContent.appendChild(taskText);
+            taskContent.appendChild(taskHour);
+            buttonContainer.appendChild(deleteButton);
+            buttonContainer.appendChild(editButton);
+            buttonContainer.appendChild(doneButton);
+
+            await editTask(id, newTaskText);
+        })
+
+        let cancelEditButton = document.createElement('button');
+        cancelEditButton.className = 'delete'
+        cancelEditButton.addEventListener('click', (e)=>{
+            textInput.remove()
+            taskHour.remove()
+            uselessInvisibleButton.remove()
+            confirmEditButton.remove()
+            cancelEditButton.remove()
+
+            taskContent.appendChild(taskText);
+            taskContent.appendChild(taskHour);
+            buttonContainer.appendChild(deleteButton);
+            buttonContainer.appendChild(editButton);
+            buttonContainer.appendChild(doneButton);
+
+        })
+
+        
+        taskContent.appendChild(textInput);
+        taskContent.appendChild(taskHour);
+
+        buttonContainer.appendChild(cancelEditButton);
+        buttonContainer.appendChild(uselessInvisibleButton);
+        buttonContainer.appendChild(confirmEditButton);
+
+        textInput.focus()
+
+        
+    })
 
     let doneButton = document.createElement('button');
     doneButton.className = 'done'
