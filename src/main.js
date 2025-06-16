@@ -68,32 +68,48 @@ document.querySelector('#minutes').textContent = String(minutes).padStart(2, '0'
 
 const hourAdd = document.querySelector('#add-hour');
 hourAdd.addEventListener('click', (e)=>{
-    if(hour < 23){
+    if(hour < 24){
         hour++;
+        document.querySelector('#hour').textContent = String(hour).padStart(2, '0');
+    }
+    if(hour == 24){
+        hour = 0;
         document.querySelector('#hour').textContent = String(hour).padStart(2, '0');
     }
 });
 
 const minutesAdd = document.querySelector('#add-minutes');
 minutesAdd.addEventListener('click', (e)=>{
-    if(minutes < 50){
-        minutes+=10;
+    if(minutes < 60){
+        minutes+=5;
+        document.querySelector('#minutes').textContent = String(minutes).padStart(2, '0');
+    }
+    if(minutes == 60){
+        minutes = 0;
         document.querySelector('#minutes').textContent = String(minutes).padStart(2, '0');
     }
 });
 
 const hourSub = document.querySelector('#sub-hour');
 hourSub.addEventListener('click', (e)=>{
-    if(hour > 0){
+    if(hour > -1){
         hour--;
+        document.querySelector('#hour').textContent = String(hour).padStart(2, '0');
+    }
+    if(hour == -1){
+        hour = 23;
         document.querySelector('#hour').textContent = String(hour).padStart(2, '0');
     }
 });
 
 const minutesSub = document.querySelector('#sub-minutes');
 minutesSub.addEventListener('click', (e)=>{
-    if(minutes > 0){
-        minutes-=10;
+    if(minutes > -5){
+        minutes-=5;
+        document.querySelector('#minutes').textContent = String(minutes).padStart(2, '0');
+    }
+    if(minutes == -5){
+        minutes = 55;
         document.querySelector('#minutes').textContent = String(minutes).padStart(2, '0');
     }
 });

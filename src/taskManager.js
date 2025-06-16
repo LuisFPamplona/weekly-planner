@@ -1,9 +1,19 @@
 import { createTask } from "./ui.js";
 import { sendTask } from "./storage.js";
+import { URL } from "./storage.js";
 
 export async function addTask(day, hour, minutes){
 
     const taskText = document.querySelector('#new-task-text').value;
+
+    let dataHour;
+
+    if(hour == 0){
+        dataHour = 24;
+    }else{
+        dataHour = hour
+    }
+    const dataMinutes = minutes;
 
     if(taskText.trim() != ''){
 
@@ -12,17 +22,26 @@ export async function addTask(day, hour, minutes){
         let task = {
             text: taskText,
             hour: taskHour,
-            weekDay: day
+            weekDay: day,
+            dataHour: dataHour,
+            dataMinutes: dataMinutes,
         }      
-        try{
 
-            const savedTask = await sendTask(task)
+
+        try{
             
-            let newTask = createTask(savedTask.text, savedTask.hour, savedTask.id);
+            const savedTask = await sendTask(task)
+            console.log(savedTask)
+            
+            let newTask = createTask(savedTask.text, savedTask.hour, savedTask.id, savedTask.dataHour, savedTask.dataMinutes);
             
             let divPai = document.querySelector(`#${day}`);
+
+
             
             divPai.appendChild(newTask);
+            taskOrder(divPai)
+
             
             document.querySelector('#new-task-text').value = ''
             
@@ -44,12 +63,21 @@ export async function addTaskAllDays(hour, minutes){
     try{
 
         const taskText = document.querySelector('#new-task-text').value;
+        
+        const dataMinutes = minutes;
 
+        let dataHour;
 
+        if(hour == 0){
+            dataHour = 24;
+        }else{
+            dataHour = hour
+        }
+        
         if(taskText.trim() != ''){
-
+            
             const taskHour = String(hour).padStart(2, '0') + ':' + String(minutes).padStart(2, '0');
-
+            
             const weekDays = [
                 'monday-container',
                 'tuesday-container',
@@ -59,22 +87,27 @@ export async function addTaskAllDays(hour, minutes){
                 'saturnday-container',
                 'sunday-container'
             ]
-        
+            
             for(let daysAmount = 0; daysAmount < 7; daysAmount++){
-
+                
                 let task = {
                     text: taskText,
                     hour: taskHour,
-                    weekDay: weekDays[daysAmount]
+                    weekDay: weekDays[daysAmount],
+                    dataHour: dataHour,
+                    dataMinutes: dataMinutes,
                 }
                 
                 const savedTask = await sendTask(task)
                 
-                let newTask = createTask(savedTask.text, savedTask.hour, savedTask.id);
+                let newTask = createTask(savedTask.text, savedTask.hour, savedTask.id, savedTask.dataHour, savedTask.dataMinutes);
+                console.log(newTask)
                 
                 let divPai = document.querySelector(`#${weekDays[daysAmount]}`);
-                
+
                 divPai.appendChild(newTask);
+                taskOrder(divPai)
+                
                 
             }
                 document.querySelector('#new-task-text').value = ''
@@ -96,4 +129,17 @@ export async function addTaskAllDays(hour, minutes){
     }
 
 
+}
+
+export function taskOrder(divPai){
+    const tasks = Array.from(divPai.querySelectorAll('.task')) //criando um array onde cada .task na div pai fica em um index
+
+    tasks.sort((a,b)=>{
+        const aTime = parseInt(a.dataset.hour) * 60 + parseInt(a.dataset.minutes)
+        const bTime = parseInt(b.dataset.hour) * 60 + parseInt(b.dataset.minutes)
+
+        return aTime - bTime;
+    })
+
+    tasks.forEach(task=> divPai.appendChild(task))
 }

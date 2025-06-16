@@ -4,12 +4,15 @@ import { URL } from "./storage.js";
 
 
 
-export function createTask(text, hour, id){
+export function createTask(text, hour, id, dataHour, dataMinutes){
     let taskDiv = document.createElement('div');
     taskDiv.className = 'task'
     taskDiv.id = 'task'+ id
     taskDiv.draggable = 'true';
     taskDiv.dataset.id = id;
+    taskDiv.dataset.hour = dataHour;
+    taskDiv.dataset.minutes = dataMinutes;
+
 
     let taskContent = document.createElement('div');
     taskContent.className = 'content'

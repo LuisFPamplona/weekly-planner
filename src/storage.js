@@ -1,5 +1,5 @@
 import { createTask } from "./ui.js";
-
+import { taskOrder } from "./taskManager.js";
 
 export const URL = 'http://localhost:3001/tasks'
 
@@ -30,10 +30,11 @@ export async function loadTasks(){
         console.log(tasks)
         
         tasks.forEach(task => {
-            let newTask  = createTask(task.text, task.hour, task.id);
+            let newTask  = createTask(task.text, task.hour, task.id, task.dataHour, task.dataMinutes, task.timeInMinutes);
             let divPai = document.querySelector(`#${task.weekDay}`);
             
             divPai.appendChild(newTask)
+            taskOrder(divPai)
         });
     }catch(err){
         console.error('Error at load data', err);
@@ -52,7 +53,6 @@ export async function deleteTask(id) {
     }catch(err){
         console.error('Error at delete data', err);
     }
-    
 }
 
 export async function editTask(id, newTaskText){
@@ -78,11 +78,11 @@ export async function removeAllTasks(){
         const response = await fetch(URL)
         const tasks = await response.json();
         
-        for(const task of tasks){
+        tasks.forEach(async (task)=>{
             await fetch(`${URL}/${task.id}`, {
                 method: 'DELETE'
             })
-        }
+        })
         
         document.querySelectorAll('.task').forEach(task => task.remove());
         
