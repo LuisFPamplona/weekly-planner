@@ -2,6 +2,10 @@
 
 Projeto de cronograma semanal para organizar tarefas por dia e horário.
 
+## Preview
+
+![preview](preview/preview.png)
+
 ---
 
 ## Requisitos
