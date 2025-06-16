@@ -205,4 +205,69 @@ function getNewPosisiton(column, posY){
 
 }
 
+export function addHour(hour){
+    
+    let thisHour = hour;
+
+    if(thisHour < 23){
+        thisHour++;
+        document.querySelector('#hour').textContent = String(thisHour).padStart(2, '0');
+    }else 
+    if(thisHour == 23){
+        thisHour = 0;
+        document.querySelector('#hour').textContent = String(thisHour).padStart(2, '0');
+    }
+    
+    return thisHour;
+    
+}
+
+export function subHour(hour){
+    
+    let thisHour = hour;
+
+    if(thisHour > 0){
+        thisHour--;
+        document.querySelector('#hour').textContent = String(thisHour).padStart(2, '0');
+    }else
+    if(thisHour == 0){
+        thisHour = 23;
+        document.querySelector('#hour').textContent = String(thisHour).padStart(2, '0');
+    }
+    
+    return thisHour;
+}
+
+export function addMinutes(minutes){
+
+    let thisMinutes = minutes;
+
+    if(thisMinutes < 55){
+        thisMinutes+=5;
+        document.querySelector('#minutes').textContent = String(thisMinutes).padStart(2, '0');
+    }else
+    if(thisMinutes == 55){
+        thisMinutes = 0;
+        document.querySelector('#minutes').textContent = String(thisMinutes).padStart(2, '0');
+    }
+
+    return thisMinutes;
+}
+
+export function subMinutes(minutes){
+
+    let thisMinutes = minutes;
+
+        if(thisMinutes > 0){
+            thisMinutes-=5;
+            document.querySelector('#minutes').textContent = String(thisMinutes).padStart(2, '0');
+        }else
+        if(thisMinutes == 0){
+            thisMinutes = 55;
+            document.querySelector('#minutes').textContent = String(thisMinutes).padStart(2, '0');
+        }
+
+    return thisMinutes;
+}
+
 

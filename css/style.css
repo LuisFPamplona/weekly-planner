@@ -13,7 +13,7 @@ a {
 }
 
 .header{
-    background-color: #000000;
+    background-color: #7fc5f3;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -30,6 +30,7 @@ a {
     margin-left: 20px;
     color: white;
     font: bold 8pt Arial;
+    text-shadow: 1px 1px 1px black;
 }
 /* INPUT NEW TASK --------------------- */
 
@@ -278,15 +279,18 @@ background-color: transparent;
     bottom: 0;
 
     width: 100%;
-    height: 30px;
+    height: 10px;
 
-    background-color: #7f7d7d;
+    background-color: #7fc5f3;
 
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+
+    font: bold 8pt Arial;
+    text-shadow: 1px 1px 1px black;
 }
 
 .footer a {

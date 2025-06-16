@@ -1,18 +1,11 @@
 import { createTask } from "./ui.js";
 import { sendTask } from "./storage.js";
-import { URL } from "./storage.js";
 
 export async function addTask(day, hour, minutes){
 
     const taskText = document.querySelector('#new-task-text').value;
 
-    let dataHour;
-
-    if(hour == 0){
-        dataHour = 24;
-    }else{
-        dataHour = hour
-    }
+    const dataHour = hour;
     const dataMinutes = minutes;
 
     if(taskText.trim() != ''){
@@ -66,13 +59,7 @@ export async function addTaskAllDays(hour, minutes){
         
         const dataMinutes = minutes;
 
-        let dataHour;
-
-        if(hour == 0){
-            dataHour = 24;
-        }else{
-            dataHour = hour
-        }
+        const dataHour = hour;
         
         if(taskText.trim() != ''){
             
